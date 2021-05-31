@@ -22,11 +22,13 @@ CREATE LOGIN L6 WITH PASSWORD = '@Str4ng@P4ssWorD'
 CREATE USER US6 FOR LOGIN L6
 
 -- Role
+GO
 CREATE ROLE R1
 CREATE ROLE R2
 CREATE ROLE R3
 
 -- User -> Role
+GO
 --- r1 -> us1
 --- r2 -> us2, us3
 --- r3 -> us4, us5 ,us6
@@ -40,6 +42,7 @@ EXEC sp_addrolemember R3,US5
 EXEC sp_addrolemember R3,US6
 
 -- Authorization
+GO
 --- GRANT:
 ---- US1 SELECT, DELETE TACGIA
 ---- US2 SELECT         TACGIA
@@ -56,6 +59,7 @@ DENY INSERT NXB TO US3
 
 --- REVOKE:
 ---- US1 DELETE         SACH
+---- US2 INSERT         SACH
 REVOKE DELETE SACH FROM US1
 REVOKE INSERT SACH FROM US2
 
