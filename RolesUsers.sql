@@ -1,0 +1,44 @@
+
+use QLSACH
+go
+
+-- User
+CREATE LOGIN L1 WITH PASSWORD = '@Str4ng@P4ssWorD'
+CREATE USER US1 FOR LOGIN L1
+
+CREATE LOGIN L2 WITH PASSWORD = '@Str4ng@P4ssWorD'
+CREATE USER US2 FOR LOGIN L2
+
+CREATE LOGIN L3 WITH PASSWORD = '@Str4ng@P4ssWorD'
+CREATE USER US3 FOR LOGIN L3
+
+CREATE LOGIN L4 WITH PASSWORD = '@Str4ng@P4ssWorD'
+CREATE USER US4 FOR LOGIN L4
+
+CREATE LOGIN L5 WITH PASSWORD = '@Str4ng@P4ssWorD'
+CREATE USER US5 FOR LOGIN L5
+
+CREATE LOGIN L6 WITH PASSWORD = '@Str4ng@P4ssWorD'
+CREATE USER US6 FOR LOGIN L6
+
+-- Role
+CREATE ROLE R1
+CREATE ROLE R2
+CREATE ROLE R3
+
+-- User -> Role
+--- r1 -> us1
+--- r2 -> us2, us3
+--- r3 -> us4, us5 ,us6
+EXEC sp_addrolemember R1,US1
+
+EXEC sp_addrolemember R2,US2
+EXEC sp_addrolemember R2,US3
+
+EXEC sp_addrolemember R3,US4
+EXEC sp_addrolemember R3,US5
+EXEC sp_addrolemember R3,US6
+
+---
+go
+use master
