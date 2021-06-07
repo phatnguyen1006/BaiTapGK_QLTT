@@ -3,13 +3,25 @@ USE QLSACH
 GO
 
 -- PROCEDURE
+--- Procedure to Report
+--- Params : NXB{ min: 2019, max: 2021 }
+GO
+CREATE PROCEDURE REPORT
+@min int, @max int
+AS
+BEGIN
+    SELECT *
+    FROM TG_SACH
+    WHERE NAMXB BETWEEN @min AND @max
+END
+
 --- Q: Đưa vào MSSACH trả ra: tên sách, tác giả, năm xuất bản.
 
 GO
 CREATE PROCEDURE SHOW_SACH
 @mssach char(3),
-@tensach varchar(25) OUTPUT,
-@tentg varchar(20) OUTPUT,
+@tensach nvarchar(25) OUTPUT,
+@tentg nvarchar(60) OUTPUT,
 @namxb int OUTPUT
 AS
 BEGIN
@@ -34,7 +46,7 @@ BEGIN
 END;
 
 GO
-DECLARE @tensach varchar(25), @tentg varchar(20), @namxb int;
+DECLARE @tensach nvarchar(25), @tentg nvarchar(60), @namxb int;
 EXEC SHOW_SACH @mssach='S01', @tensach=@tensach OUTPUT, @tentg=@tentg OUTPUT, @namxb=@namxb OUTPUT;
 SELECT @tensach as Ten_Sach, @tentg as Ten_TG, @namxb as NAM_XB;
 
