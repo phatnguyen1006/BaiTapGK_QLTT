@@ -15,6 +15,9 @@ BEGIN
     WHERE NAMXB BETWEEN @min AND @max
 END
 
+GO
+DROP PROCEDURE REPORT
+
 --- Q: Đưa vào MSSACH trả ra: tên sách, tác giả, năm xuất bản.
 
 GO
@@ -47,7 +50,11 @@ END;
 
 GO
 DECLARE @tensach nvarchar(25), @tentg nvarchar(60), @namxb int;
+-- Case Đúng
 EXEC SHOW_SACH @mssach='S01', @tensach=@tensach OUTPUT, @tentg=@tentg OUTPUT, @namxb=@namxb OUTPUT;
+SELECT @tensach as Ten_Sach, @tentg as Ten_TG, @namxb as NAM_XB;
+-- Case Sai
+EXEC SHOW_SACH @mssach='S05', @tensach=@tensach OUTPUT, @tentg=@tentg OUTPUT, @namxb=@namxb OUTPUT;
 SELECT @tensach as Ten_Sach, @tentg as Ten_TG, @namxb as NAM_XB;
 
 GO
@@ -83,6 +90,13 @@ BEGIN
             ROLLBACK TRANSACTION
         END
 END
+
+DELETE
+FROM SACH
+WHERE MSSACH = 'S04'
+
+SELECT *
+FROM SACH
 
 GO
 DROP TRIGGER DEL_SACH
