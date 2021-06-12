@@ -34,7 +34,9 @@ CREATE TABLE TG_SACH (
 	MSSACH char(3), 
 	NAMXB int,
 
-    constraint PK_TG_S primary key(MSTG, MSSACH)
+    constraint PK_TG_S primary key(MSTG, MSSACH),
+	foreign key (MSTG) references TACGIA(MSTG),
+	foreign key (MSSACH) references SACH(MSSACH)
 );
 ---
 
@@ -61,7 +63,7 @@ INSERT INTO TG_SACH VALUES('TG01','S02',2019)
 INSERT INTO TG_SACH VALUES('TG02','S04',2020)
 INSERT INTO TG_SACH VALUES('TG03','S03',2021)
 
-
+GO
 USE master
 -- GO
 -- DROP DATABASE QLSACH
