@@ -59,6 +59,7 @@ FROM [QLDT].[dbo].[V_HD_DT]
 GO
 SELECT *
 FROM [QLDT].[dbo].[V_DIEM_DT]
+
 -- CLEAR
 GO
 DROP VIEW V_GV_PB
